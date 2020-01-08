@@ -123,16 +123,3 @@ def detectMarker(img):
             if marker == v:
                 matches.append((k, orderedRects[idx]))
     return matches
-
-
-#img = cv2.imread("./markertest.jpg")
-cap = cv2.VideoCapture(0)
-while(True):
-    ret, frame = cap.read()
-    matches = detectMarker(frame)
-    if len(matches) > 0:
-        print(matches)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-cap.release()
-cv2.destroyAllWindows()
