@@ -18,6 +18,7 @@ markerDict::markerDict() {
 		1, 0, 0, 0, 0, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	one_mat = cv::Mat(7, 7, CV_32SC1, one.data());
 	two = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 0, 0, 1, 1,
@@ -27,6 +28,7 @@ markerDict::markerDict() {
 		1, 0, 0, 0, 0, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	two_mat = cv::Mat(7, 7, CV_32SC1, two.data());
 	three = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 0, 0, 1, 1,
@@ -36,6 +38,7 @@ markerDict::markerDict() {
 		1, 1, 0, 0, 0, 1, 1,
 		1, 1, 0, 0, 0, 1, 1
 	};
+	three_mat = cv::Mat(7, 7, CV_32SC1, three.data());
 	four = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 1, 1, 0, 1, 1,
@@ -45,6 +48,7 @@ markerDict::markerDict() {
 		1, 1, 1, 1, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	four_mat = cv::Mat(7, 7, CV_32SC1, four.data());
 	five = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 0, 1,
@@ -54,6 +58,7 @@ markerDict::markerDict() {
 		1, 0, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	five_mat = cv::Mat(7, 7, CV_32SC1, five.data());
 	six = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 0, 0, 0, 1,
@@ -63,6 +68,7 @@ markerDict::markerDict() {
 		1, 1, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	six_mat = cv::Mat(7, 7, CV_32SC1, six.data());
 	seven = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 1, 1,
@@ -72,6 +78,7 @@ markerDict::markerDict() {
 		1, 1, 0, 1, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	seven_mat = cv::Mat(7, 7, CV_32SC1, seven.data());
 	eight = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 0, 0, 1, 1,
@@ -81,6 +88,7 @@ markerDict::markerDict() {
 		1, 1, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	eight_mat = cv::Mat(7, 7, CV_32SC1, eight.data());
 	nine = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 0, 0, 1, 1,
@@ -90,6 +98,7 @@ markerDict::markerDict() {
 		1, 1, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	nine_mat = cv::Mat(7, 7, CV_32SC1, nine.data());
 	zero = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 0, 0, 1, 1,
@@ -99,6 +108,7 @@ markerDict::markerDict() {
 		1, 1, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	zero_mat = cv::Mat(7, 7, CV_32SC1, zero.data());
 	A = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 1, 0, 1, 1, 1,
@@ -108,6 +118,7 @@ markerDict::markerDict() {
 		1, 0, 1, 1, 1, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	A_mat = cv::Mat(7, 7, CV_32SC1, A.data());
 	B = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 1, 1,
@@ -117,6 +128,7 @@ markerDict::markerDict() {
 		1, 0, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	B_mat = cv::Mat(7, 7, CV_32SC1, B.data());
 	C = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 0, 0, 1, 1,
@@ -126,6 +138,7 @@ markerDict::markerDict() {
 		1, 1, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	C_mat = cv::Mat(7, 7, CV_32SC1, C.data());
 	D = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 1, 1,
@@ -135,6 +148,7 @@ markerDict::markerDict() {
 		1, 0, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	D_mat = cv::Mat(7, 7, CV_32SC1, D.data());
 	E = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 0, 1,
@@ -144,6 +158,7 @@ markerDict::markerDict() {
 		1, 0, 0, 0, 0, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	E_mat = cv::Mat(7, 7, CV_32SC1, E.data());
 	F = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 0, 1,
@@ -153,6 +168,7 @@ markerDict::markerDict() {
 		1, 0, 1, 1, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	F_mat = cv::Mat(7, 7, CV_32SC1, F.data());
 	G = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 0, 0, 1, 1,
@@ -162,6 +178,7 @@ markerDict::markerDict() {
 		1, 1, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	G_mat = cv::Mat(7, 7, CV_32SC1, G.data());
 	H = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 1, 1, 1, 0, 1,
@@ -171,6 +188,7 @@ markerDict::markerDict() {
 		1, 0, 1, 1, 1, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	H_mat = cv::Mat(7, 7, CV_32SC1, H.data());
 	I = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 0, 1,
@@ -180,6 +198,7 @@ markerDict::markerDict() {
 		1, 0, 0, 0, 0, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	I_mat = cv::Mat(7, 7, CV_32SC1, I.data());
 	J = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 1, 1, 1, 0, 1,
@@ -189,6 +208,7 @@ markerDict::markerDict() {
 		1, 1, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	J_mat = cv::Mat(7, 7, CV_32SC1, J.data());
 	K = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 1, 1, 1, 0, 1,
@@ -198,6 +218,7 @@ markerDict::markerDict() {
 		1, 0, 1, 1, 1, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	K_mat = cv::Mat(7, 7, CV_32SC1, K.data());
 	L = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 1, 1, 1, 1, 1,
@@ -207,6 +228,7 @@ markerDict::markerDict() {
 		1, 0, 0, 0, 0, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	L_mat = cv::Mat(7, 7, CV_32SC1, L.data());
 	M = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 1, 1, 1, 0, 1,
@@ -216,6 +238,7 @@ markerDict::markerDict() {
 		1, 0, 1, 1, 1, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	M_mat = cv::Mat(7, 7, CV_32SC1, M.data());
 	N = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 1, 1, 1, 0, 1,
@@ -225,6 +248,7 @@ markerDict::markerDict() {
 		1, 0, 1, 1, 1, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	N_mat = cv::Mat(7, 7, CV_32SC1, N.data());
 	O = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 0, 0, 1, 1,
@@ -234,6 +258,7 @@ markerDict::markerDict() {
 		1, 1, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	O_mat = cv::Mat(7, 7, CV_32SC1, O.data());
 	P = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 1, 1,
@@ -243,6 +268,7 @@ markerDict::markerDict() {
 		1, 0, 1, 1, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	P_mat = cv::Mat(7, 7, CV_32SC1, P.data());
 	Q = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 0, 0, 1, 1,
@@ -252,6 +278,7 @@ markerDict::markerDict() {
 		1, 1, 0, 0, 1, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	Q_mat = cv::Mat(7, 7, CV_32SC1, Q.data());
 	R = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 1, 1,
@@ -261,6 +288,7 @@ markerDict::markerDict() {
 		1, 0, 1, 1, 1, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	R_mat = cv::Mat(7, 7, CV_32SC1, R.data());
 	S = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 0, 0, 0, 1,
@@ -270,6 +298,7 @@ markerDict::markerDict() {
 		1, 0, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	S_mat = cv::Mat(7, 7, CV_32SC1, S.data());
 	T = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 0, 1,
@@ -279,6 +308,7 @@ markerDict::markerDict() {
 		1, 1, 1, 0, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	T_mat = cv::Mat(7, 7, CV_32SC1, T.data());
 	U = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 1, 1, 1, 0, 1,
@@ -287,6 +317,7 @@ markerDict::markerDict() {
 		1, 1, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	U_mat = cv::Mat(7, 7, CV_32SC1, U.data());
 	V = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 1, 1, 1, 0, 1,
@@ -296,6 +327,7 @@ markerDict::markerDict() {
 		1, 1, 1, 0, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	V_mat = cv::Mat(7, 7, CV_32SC1, V.data());
 	W = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 1, 1, 1, 0, 1,
@@ -305,6 +337,7 @@ markerDict::markerDict() {
 		1, 1, 0, 1, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	W_mat = cv::Mat(7, 7, CV_32SC1, W.data());
 	X = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 1, 1, 1, 0, 1,
@@ -314,6 +347,7 @@ markerDict::markerDict() {
 		1, 0, 1, 1, 1, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	X_mat = cv::Mat(7, 7, CV_32SC1, X.data());
 	Y = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 1, 1, 1, 0, 1,
@@ -323,6 +357,7 @@ markerDict::markerDict() {
 		1, 1, 1, 0, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	Y_mat = cv::Mat(7, 7, CV_32SC1, Y.data());
 	Z = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 0, 1,
@@ -332,6 +367,7 @@ markerDict::markerDict() {
 		1, 0, 0, 0, 0, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	Z_mat = cv::Mat(7, 7, CV_32SC1, Z.data());
 	question = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 0, 0, 1, 1,
@@ -341,6 +377,7 @@ markerDict::markerDict() {
 		1, 1, 1, 0, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	question_mat = cv::Mat(7, 7, CV_32SC1, question.data());
 	heart = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 0, 1, 0, 1, 1,
@@ -350,6 +387,7 @@ markerDict::markerDict() {
 		1, 1, 1, 0, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	heart_mat = cv::Mat(7, 7, CV_32SC1, heart.data());
 	arrow_u = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 1, 0, 1, 1, 1,
@@ -359,6 +397,7 @@ markerDict::markerDict() {
 		1, 1, 0, 0, 0, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	arrow_u_mat = cv::Mat(7, 7, CV_32SC1, arrow_u.data());
 	arrow_l = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 1, 0, 1, 1, 1,
@@ -368,6 +407,7 @@ markerDict::markerDict() {
 		1, 1, 1, 1, 0, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	arrow_l_mat = cv::Mat(7, 7, CV_32SC1, arrow_l.data());
 	arrow_r = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 1, 0, 1, 1, 1,
@@ -377,6 +417,7 @@ markerDict::markerDict() {
 		1, 0, 0, 1, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	arrow_r_mat = cv::Mat(7, 7, CV_32SC1, arrow_r.data());
 	dot = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 0, 1,
@@ -386,6 +427,7 @@ markerDict::markerDict() {
 		1, 0, 0, 0, 0, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	dot_mat = cv::Mat(7, 7, CV_32SC1, dot.data());
 	square = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1,
@@ -395,6 +437,7 @@ markerDict::markerDict() {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	square_mat = cv::Mat(7, 7, CV_32SC1, square.data());
 	farm = {
 		1, 1, 1, 1, 1, 1, 1,
 		1, 0, 0, 0, 0, 0, 1,
@@ -404,97 +447,46 @@ markerDict::markerDict() {
 		1, 0, 0, 0, 0, 0, 1,
 		1, 1, 1, 1, 1, 1, 1
 	};
+	farm_mat = cv::Mat(7, 7, CV_32SC1, farm.data());
 	markers = {
-		one, two, three, four, five, six, seven, eight, nine, zero
-		//A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
-		//question, heart, arrow_u, arrow_l, arrow_r, dot, square, farm
+		one_mat, two_mat, three_mat, four_mat, five_mat, six_mat, seven_mat, eight_mat, nine_mat, zero_mat,
+		A_mat, B_mat, C_mat, D_mat, E_mat, F_mat, G_mat, H_mat, I_mat, J_mat, K_mat, L_mat, M_mat, N_mat, O_mat, P_mat, Q_mat, R_mat, S_mat, T_mat, U_mat, V_mat, W_mat, X_mat, Y_mat, Z_mat,
+		question_mat, heart_mat, arrow_u_mat, arrow_l_mat, arrow_r_mat, dot_mat, square_mat, farm_mat
 	};
-	// Set maps
-	name2marker["one"] = one;
-	marker2name[one] = "one";
-	name2marker["two"] = two;
-	marker2name[two] = "two";
-	name2marker["three"] = three;
-	marker2name[three] = "three";
-	name2marker["four"] = four;
-	marker2name[four] = "four";
-	name2marker["five"] = five;
-	marker2name[five] = "five";
-	name2marker["six"] = six;
-	marker2name[six] = "six";
-	name2marker["seven"] = seven;
-	marker2name[seven] = "seven";
-	name2marker["eight"] = eight;
-	marker2name[eight] = "eight";
-	name2marker["nine"] = nine;
-	marker2name[nine] = "nine";
-	name2marker["zero"] = zero;
-	marker2name[zero] = "zero";
-	name2marker["A"] = A;
-	marker2name[A] = "A";
-	name2marker["B"] = B;
-	marker2name[B] = "B";
-	name2marker["C"] = C;
-	marker2name[C] = "C";
-	name2marker["D"] = D;
-	marker2name[D] = "D";
-	name2marker["E"] = E;
-	marker2name[E] = "E";
-	name2marker["F"] = F;
-	marker2name[F] = "F";
-	name2marker["G"] = G;
-	marker2name[G] = "G";
-	name2marker["H"] = H;
-	marker2name[H] = "H";
-	name2marker["I"] = I;
-	marker2name[I] = "I";
-	name2marker["J"] = J;
-	marker2name[J] = "J";
-	name2marker["K"] = K;
-	marker2name[K] = "K";
-	name2marker["L"] = L;
-	marker2name[L] = "L";
-	name2marker["M"] = M;
-	marker2name[M] = "M";
-	name2marker["N"] = N;
-	marker2name[N] = "N";
-	name2marker["O"] = O;
-	marker2name[O] = "O";
-	name2marker["P"] = P;
-	marker2name[P] = "P";
-	name2marker["Q"] = Q;
-	marker2name[Q] = "Q";
-	name2marker["R"] = R;
-	marker2name[R] = "R";
-	name2marker["S"] = S;
-	marker2name[S] = "S";
-	name2marker["T"] = T;
-	marker2name[T] = "T";
-	name2marker["U"] = U;
-	marker2name[U] = "U";
-	name2marker["V"] = V;
-	marker2name[V] = "V";
-	name2marker["W"] = W;
-	marker2name[W] = "W";
-	name2marker["X"] = X;
-	marker2name[X] = "X";
-	name2marker["Y"] = Y;
-	marker2name[Y] = "Y";
-	name2marker["Z"] = Z;
-	marker2name[Z] = "Z";
+	names = {
+		"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "zero",
+		"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+		"question", "heart", "arrow_u", "arrow_l", "arrow_r", "dot", "square", "farm"
+	};
 }
 
 
-std::string markerDict::getMarker(vector<int> candidate) {
-	for (vector<int> marker : markers) {
-		cv::Mat marker_mat = cv::Mat(marker).reshape(0, 7);
-		marker_mat.convertTo(marker_mat, CV_8UC1);
-		cv::Mat candidate_mat = cv::Mat(candidate).reshape(0, 7);
-		candidate_mat.convertTo(candidate_mat, CV_8UC1);
-		cv::Mat diff(7, 7, CV_8U, cv::Scalar::all(0));
-		cv::absdiff(marker_mat, candidate_mat, diff);
-		if ((int)cv::countNonZero(diff) <= 3) {
-			return marker2name[marker];
+bool markerDict::borderCheck(cv::Mat marker) {
+	int border_sum = 0;
+	for (int i(0); i < 7; ++i) {
+		border_sum += marker.at<int>(0, i) +
+					  marker.at<int>(6, i) +
+					  marker.at<int>(i, 0) +
+					  marker.at<int>(i, 6);
+	}
+	if (border_sum >= MIN_BORDER_SUM) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+
+std::string markerDict::getMarker(cv::Mat candidate) {
+	if (borderCheck(candidate)) {
+		return "none";
+	}
+	cv::Mat diff(7, 7, CV_32SC1, cv::Scalar::all(0));
+	for (int i(0); i < markers.size(); ++i) {
+		cv::absdiff(markers[i], candidate, diff);
+		if ((int)cv::countNonZero(diff) == MAX_ERROR_BITS) {
+			return names[i];
 		}
 	}
 	return "none";

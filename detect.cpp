@@ -12,12 +12,20 @@ using namespace std;
 using namespace cv;
 
 
-/* Tuneable variables */
-//Scalar mcolor_lb(15, 100, 150);
-//Scalar mcolor_ub(30, 255, 255);
-Scalar mcolor_lb(10, 50, 100);
+/* Tuneable variables
+
+	mcolor_lb = lowerbound threshold for marker detection
+	mcolor_ub = upperbound threshold for marker detection
+	COVERAGE = percentage of white pixels within cell to be classified as "filled"
+	IGNORE_MARGIN = The percentage of cell size to be trimmed away
+	MIN_WARP_WH = Minimum width and height of warped image to not be rejected as candidate
+*/
+Scalar mcolor_lb(10, 100, 100);
 Scalar mcolor_ub(30, 255, 255);
-double COVERAGE = 0.8;
+double COVERAGE = 0.5;
+double IGNORE_MARGIN = 0.2;
+int MIN_WARP_WH = 21;	// this should be >= 7
+int MAX_ORDEREDRECTS = 25;
 
 
 /* Constructors */
@@ -30,8 +38,8 @@ vector<Mat> tile(Mat warp);
 markerDict dictionary;
 
 
-void detectMarker(Mat img, vector<string>& marker_names, vector<vector<Point> >& marker_rects) {
-	Mat img_og = img.clone();
+/* main detection function */
+void detectMarker(Mat img, Mat& dimg, vector<string>& marker_names, vector<vector<Point> >& marker_rects) {
 	/* Threshold image */
 	cvtColor(img, img, COLOR_BGR2HSV);
 	inRange(img, mcolor_lb, mcolor_ub, img);
@@ -56,19 +64,24 @@ void detectMarker(Mat img, vector<string>& marker_names, vector<vector<Point> >&
 	if (rects.empty()) {
 		return;
 	}
-	//drawContours(img_og, rects, 0, Scalar(0, 255, 0), 3);
-	//imshow("Img og", img_og);
-	//waitKey(0);
 	/* Prune rectangles by removing those within existing rectangles */
 	// TO-DO
 	/* Perspective transform */
 	vector<vector<Point> > orderedRects = orderRects(rects);
+	if (orderedRects.size() > MAX_ORDEREDRECTS)
+		orderedRects.resize(MAX_ORDEREDRECTS);
 	vector<Mat> warps = perspectiveTrans(img, orderedRects);
+	/* Otsu threshold + gaussian blur */
+	for (int i(0); i < warps.size(); ++i) {
+		GaussianBlur(warps[i], warps[i], Size(3, 3), 0);
+		threshold(warps[i], warps[i], 0, 255, THRESH_BINARY + THRESH_OTSU);
+	}
+	dimg = warps[0].clone();
 	/* Split image into 7x7 tiles */
 	vector<vector<Mat> > grids;
 	int deleted_boxes = 0;
 	for (int i(0); i < warps.size(); ++i) {
-		if (warps[i].rows >= 7 && warps[i].cols >= 7) {
+		if (warps[i].rows >= MIN_WARP_WH && warps[i].cols >= MIN_WARP_WH) {
 			grids.push_back(tile(warps[i]));
 		}
 		else {
@@ -76,13 +89,16 @@ void detectMarker(Mat img, vector<string>& marker_names, vector<vector<Point> >&
 			++deleted_boxes;
 		}
 ;	}
-	/* Better padding / cropping to preserve symmetry */
-	// TO DO
+	if (grids.empty()) {
+		return;
+	}
 	/* Determine whether cell is filled and return detected markers */
 	for (int i(0); i < grids.size(); ++i) {
-		vector<int> marker(49);
-		for (int g(0); g < grids[i].size(); ++g) {
-			marker[g] = ((double)countNonZero(grids[i][g]) / 49.0) >= COVERAGE;
+		Mat marker(7, 7, CV_32SC1);
+		for (int y(0); y < 7; ++y) {
+			for (int x(0); x < 7; ++x) {
+				marker.at<int>(y, x) = ((double)countNonZero(grids[i][x + y * 7]) / 49.0) >= COVERAGE;
+			}
 		}
 		string marker_name = dictionary.getMarker(marker);
 		if (marker_name != "none") {
@@ -146,11 +162,6 @@ vector<Mat> perspectiveTrans(Mat img, vector<vector<Point> >& orderedRects) {
 		double h1 = sqrtf(powf((tr.y - br.y), 2) + powf((tr.x - br.x), 2));
 		double h2 = sqrtf(powf((tl.y - bl.y), 2) + powf((tl.x - bl.x), 2));
 		double h = fmax(h1, h2);
-		/*
-		vector<Point> dst {
-			Point(0, 0), Point(w - 1, 0), Point(w - 1, h - 1), Point(0, h - 1)
-		};
-		*/
 		Point2f src[4] = {
 			orderedRects[i][0], orderedRects[i][1], orderedRects[i][2], orderedRects[i][3]
 		};
@@ -197,10 +208,11 @@ vector<Mat> tile(Mat warp) {
 	int W = warp.cols;
 	int M = H / ratio;
 	int N = W / ratio;
+	int ignore_pixs = IGNORE_MARGIN * min(M, N);
 	vector<Mat> grids;
 	for (int y(0); y < H; y += M) {
 		for (int x(0); x < W; x += N) {
-			grids.push_back(warp(Rect(x, y, N, M)));
+			grids.push_back(warp(Rect(x + ignore_pixs, y + ignore_pixs, N - 2 * ignore_pixs, M - 2 * ignore_pixs)));
 		}
 	}
 	return grids;

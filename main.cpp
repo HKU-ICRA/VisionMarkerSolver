@@ -13,12 +13,24 @@ using namespace cv;
 
 
 int main (int argc, char** argv) {
-	Mat image = imread("C:\\Users\\impec\\Pictures\\markertest.jpg", IMREAD_COLOR);
-	vector<string> vss;
-	vector<vector<Point> > vps;
-	detectMarker(image, vss, vps);
-	for (int i(0); i < vss.size(); ++i) {
-		cout << vss[i] << "\n";
+	VideoCapture cap(0);
+	while (!cap.isOpened()) {
+		VideoCapture cap(0);
+	}
+	while (true) {
+		Mat frame;
+		Mat dframe;
+		cap >> frame;
+		vector<string> vss;
+		vector<vector<Point> > vps;
+		detectMarker(frame, dframe, vss, vps);
+		for (int i(0); i < vss.size(); ++i) {
+			cout << vss[i] << "\n";
+		}
+		imshow("Frame", frame);
+		if (!dframe.empty())
+			imshow("Dframe", dframe);
+		if (waitKey(10) == 27) break; // stop capturing by pressing ESC 
 	}
 	return 0;
 }
